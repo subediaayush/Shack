@@ -21,10 +21,7 @@ public class HttpExecutor {
 	
 	private static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("application/json");
 	
-	private static final float MAX_AVAILABLE_SPACE_USE_FRACTION = 0.9f;
-	private static final float MAX_TOTAL_SPACE_USE_FRACTION = 0.25f;
-	
-	private static final String BIG_CACHE_PATH = "download-cache";
+	private static final String BIG_CACHE_PATH = "shack-http-download";
 	private static final int MIN_DISK_CACHE_SIZE = 5 * 1024 * 1024;       // 5MB
 	private static final int MAX_DISK_CACHE_SIZE = 20 * 1024 * 1024;      // 20MB
 	
@@ -113,9 +110,9 @@ public class HttpExecutor {
 	}
 	
 	public Cache createCache(){
-		return new Cache(new File(ShackApplication
-				.getApplicationInstance().getCacheDir(),
-				"apiResponses"), 5 * 1024 * 1024);
+		return new Cache(new File(
+				ShackApplication.getApplicationInstance().getCacheDir(),
+				BIG_CACHE_PATH), MAX_DISK_CACHE_SIZE);
 	}
 	
 }
