@@ -101,6 +101,10 @@ public class HttpExecutor {
 					response.setReceivedTime(System.currentTimeMillis());
 					response.setRequest(request);
 					
+					response.setParsadi(
+							success
+					);
+					
 					callback.onResult(response);
 				}
 			}

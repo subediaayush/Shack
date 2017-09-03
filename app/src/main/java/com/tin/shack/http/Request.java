@@ -97,6 +97,11 @@ public class Request {
 			return this;
 		}
 		
+		public RequestBuilder addDataPath(String key, String value) {
+			request.addDataPath(key, value);
+			return this;
+		}
+		
 		public RequestBuilder setType(HttpRequestType type) {
 			request.setType(type);
 			return this;
@@ -115,6 +120,10 @@ public class Request {
 		public Request build() {
 			return request;
 		}
+	}
+	
+	private void addDataPath(String key, String value) {
+		data.put(key, value);
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.tin.shack;
+package com.tin.shack.login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
+import com.tin.shack.R;
 import com.tin.shack.auth.FirebaseLoginCallback;
 import com.tin.shack.auth.firebase.FirebaseLogin;
 import com.tin.shack.auth.firebase.FirebaseLoginService;
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements FirebaseLoginCal
 						.initiate();
 			}
 		});
+		
 		mFacebookButton.setOnLongClickListener(new View.OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
@@ -71,7 +73,6 @@ public class LoginActivity extends AppCompatActivity implements FirebaseLoginCal
 	
 	@Override
 	public void onLoginSuccess(FirebaseUser user) {
-		
 		Log.d(TAG, "Login successful");
 	}
 	

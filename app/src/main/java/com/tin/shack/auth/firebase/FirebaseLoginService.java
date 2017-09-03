@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.tin.shack.auth.FirebaseLoginCallback;
 import com.tin.shack.auth.ProviderLoginCallback;
 import com.tin.shack.auth.providers.AuthProvider;
+import com.tin.shack.auth.shauth.Shauth;
 
 /**
  * Created by aayushsubedi on 7/23/17.
@@ -61,7 +62,7 @@ public class FirebaseLoginService implements ProviderLoginCallback {
 				if (task.isSuccessful()) {
 					if (mCallback != null) {
 						FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-						mCallback.onLoginSuccess(user);
+						Shauth.requestToken(user, mCallback);
 					}
 				} else {
 					onProviderLoginFailure(task.getException().getMessage());
