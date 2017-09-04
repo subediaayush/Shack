@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity implements FirebaseLoginCal
 	}
 	
 	private void sendRequest() {
-		HttpExecutor executor = HttpExecutor.getInstance();
+		HttpExecutor executor = HttpExecutor.getInstance(this);
 		HashMap<String, String> data = new HashMap<String, String>() {{
 			put("hello", "world");
 		}};

@@ -1,9 +1,9 @@
 package com.tin.shack.http;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.tin.shack.ShackApplication;
 
 import java.io.File;
 
@@ -39,18 +39,18 @@ public class HttpExecutor {
 	private okhttp3.Request.Builder requestBuilder;
 	private HttpAsyncTask executor;
 	
-	private HttpExecutor(){
+	private HttpExecutor(Context context){
 		client = new OkHttpClient.Builder()
-				.cache(createCache())
+				.cache(createCache(context))
 				.addNetworkInterceptor(new Interceptors.ResponseCacheInterceptor())
-				.addInterceptor(new Interceptors.OfflineResponseCacheInterceptor())
+				.addInterceptor(new Interceptors.OfflineResponseCacheInterceptor(context))
 				.addInterceptor(new Interceptors.CurlLoggingInterceptor())
 				.build();
 		gson = new Gson();
 	}
 	
-	public static HttpExecutor getInstance() {
-		if (sInstance == null) sInstance = new HttpExecutor();
+	public static HttpExecutor getInstance(Context context) {
+		if (sInstance == null) sInstance = new HttpExecutor(context.getApplicationContext());
 		return sInstance;
 	}
 	
@@ -113,9 +113,9 @@ public class HttpExecutor {
 		executor.execute();
 	}
 	
-	public Cache createCache(){
+	public Cache createCache(Context context){
 		return new Cache(new File(
-				ShackApplication.getApplicationInstance().getCacheDir(),
+				context.getApplicationContext().getCacheDir(),
 				BIG_CACHE_PATH), MAX_DISK_CACHE_SIZE);
 	}
 	

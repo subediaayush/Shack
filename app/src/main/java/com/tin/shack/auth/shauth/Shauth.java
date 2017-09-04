@@ -1,5 +1,7 @@
 package com.tin.shack.auth.shauth;
 
+import android.content.Context;
+
 import com.google.firebase.auth.FirebaseUser;
 import com.tin.shack.auth.FirebaseLoginCallback;
 import com.tin.shack.auth.firebase.FirebaseTokenManager;
@@ -15,11 +17,11 @@ import com.tin.shack.http.ResponseCallback;
  */
 
 public class Shauth {
-	public static void requestToken(final FirebaseUser user, final FirebaseLoginCallback callback) {
+	public static void requestToken(final Context context, final FirebaseUser user, final FirebaseLoginCallback callback) {
 		FirebaseTokenManager.requestToken(user, new FirebaseTokenManager.TokenListener() {
 			@Override
 			public void onTokenFetchSuccess(String token) {
-				requestShackToken(user, token, callback);
+				requestShackToken(context, user, token, callback);
 			}
 			
 			@Override
@@ -29,14 +31,14 @@ public class Shauth {
 		});
 	}
 	
-	private static void requestShackToken(final FirebaseUser user, String foken, final FirebaseLoginCallback callback) {
+	private static void requestShackToken(Context context, final FirebaseUser user, String foken, final FirebaseLoginCallback callback) {
 		Request request = new Request.RequestBuilder()
 				.setType(HttpRequestType.GET)
 				.addHeader("token", foken)
 				.addDataPath("fuid", user.getUid())
 				.build();
 		
-		HttpExecutor.getInstance().execute(request, new ResponseCallback() {
+		HttpExecutor.getInstance(context).execute(request, new ResponseCallback() {
 			@Override
 			public void onResult(Response response) {
 				if (response.isParsadi()) {

@@ -62,7 +62,7 @@ public class FirebaseLoginService implements ProviderLoginCallback {
 				if (task.isSuccessful()) {
 					if (mCallback != null) {
 						FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-						Shauth.requestToken(user, mCallback);
+						Shauth.requestToken(mParent, user, mCallback);
 					}
 				} else {
 					onProviderLoginFailure(task.getException().getMessage());

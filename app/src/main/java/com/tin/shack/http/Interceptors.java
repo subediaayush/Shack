@@ -1,5 +1,6 @@
 package com.tin.shack.http;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.tin.shack.util.NetworkUtils;
@@ -40,10 +41,16 @@ public class Interceptors {
 	 * response is fetched from the cache.
 	 */
 	public static class OfflineResponseCacheInterceptor implements Interceptor {
+		private final Context mContext;
+		
+		public OfflineResponseCacheInterceptor(Context context) {
+			this.mContext = context;
+		}
+		
 		@Override
 		public okhttp3.Response intercept(Chain chain) throws IOException {
 			Request request = chain.request();
-			if (!NetworkUtils.isNetworkAvailable()) {
+			if (!NetworkUtils.isNetworkAvailable(mContext)) {
 				request = request.newBuilder()
 						.header("Cache-Control",
 								"public, only-if-cached, max-stale=" + 2419200)
