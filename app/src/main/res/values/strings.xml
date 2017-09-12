@@ -1,3 +1,7 @@
 <resources>
 	<string name="app_name">Shack</string>
+	<string name="no_picture_title">It seems you have just started using the app</string>
+	<string name="no_picture_message">Start by taking your selfie and dive into a world of possibilities</string>
+	<string name="label_continue">Continue</string>
+	<string name="picture_confirm_title">Proceed with picture</string>
 </resources>

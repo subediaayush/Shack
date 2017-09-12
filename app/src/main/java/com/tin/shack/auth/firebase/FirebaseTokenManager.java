@@ -14,11 +14,11 @@ import com.tin.shack.auth.preference.PreferenceManager;
  */
 
 public class FirebaseTokenManager {
-	public static void requestToken(TokenListener listener) {
-		requestToken(FirebaseAuth.getInstance().getCurrentUser(), listener);
+	public static void requestFirebaseToken(TokenListener listener) {
+		requestFirebaseToken(FirebaseAuth.getInstance().getCurrentUser(), listener);
 	}
 	
-	public static void requestToken(FirebaseUser user, final TokenListener listener) {
+	public static void requestFirebaseToken(FirebaseUser user, final TokenListener listener) {
 		user.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
 			@Override
 			public void onComplete(@NonNull Task<GetTokenResult> task) {

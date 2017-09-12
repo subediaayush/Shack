@@ -1,7 +1,5 @@
 package com.tin.shack.http;
 
-import java.util.HashMap;
-
 /**
  * Created by aayushsubedi on 8/8/17.
  */
@@ -11,7 +9,7 @@ public class Response {
 	private String message;
 	private int code;
 	private boolean parsadi;
-	private HashMap<String, String> data;
+	private String data;
 	
 	private long received;
 	
@@ -39,11 +37,11 @@ public class Response {
 		this.parsadi = parsadi;
 	}
 	
-	public HashMap<String, String> getData() {
+	public String getData() {
 		return data;
 	}
 	
-	public void setData(HashMap<String, String> data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 	

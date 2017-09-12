@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
+
+	<com.flurgle.camerakit.CameraView
+		android:id="@+id/camera"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@android:color/black"
+		app:ckFacing="front"
+		app:ckPermissions="picture"
+		/>
+
+	<ImageView
+		android:layout_width="64dp"
+		android:layout_height="64dp"
+		android:layout_gravity="center_horizontal|bottom"
+		android:layout_margin="32dp"
+		app:srcCompat="@drawable/ic_camera"
+		style="@style/Base.Widget.AppCompat.Button.Borderless"
+		android:onClick="takePicture"
+		/>
+
+	<ViewSwitcher
+		android:id="@+id/intro_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="16dp"
+		android:background="@color/white"
+		app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+		>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center_horizontal"
+			android:orientation="vertical"
+			>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/no_picture_title"
+				android:textAppearance="@style/TextAppearance.AppCompat.Title"
+				/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:text="@string/no_picture_message"
+				android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+				/>
+
+			<Button
+				style="@style/Base.Widget.AppCompat.Button.Colored"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:onClick="startSelfieChallenge"
+				android:text="@string/label_continue"
+				/>
+		</LinearLayout>
+
+		<FrameLayout
+			android:id="@+id/content"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			/>
+	</ViewSwitcher>
+
+	<LinearLayout
+		android:id="@+id/camera_confirmation"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/white"
+		android:clipToPadding="false"
+		android:gravity="center_horizontal"
+		android:orientation="vertical"
+		android:padding="16dp"
+		app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+		>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/picture_confirm_title"
+			android:textAppearance="@style/TextAppearance.AppCompat.Title"
+			/>
+
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			>
+
+			<ImageView
+				android:id="@+id/intro_selfie"
+				android:layout_width="wrap_content"
+				android:layout_height="100dp"
+				android:scaleType="fitXY"
+				android:adjustViewBounds="true"
+				/>
+
+			<ImageView
+				style="@style/Widget.AppCompat.Button.Borderless"
+				android:layout_width="64dp"
+				android:layout_height="64dp"
+				android:layout_gravity="end|center_vertical"
+				android:layout_marginEnd="64dp"
+				android:layout_marginRight="64dp"
+				android:onClick="acceptPicture"
+				android:tint="@color/green"
+				app:srcCompat="@drawable/ic_check"
+				/>
+
+			<ImageView
+				style="@style/Widget.AppCompat.Button.Borderless"
+				android:layout_width="64dp"
+				android:layout_height="64dp"
+				android:layout_gravity="end|center_vertical"
+				android:onClick="retakePicture"
+				android:tint="@color/red"
+				app:srcCompat="@drawable/ic_cross"
+				/>
+		</FrameLayout>
+	</LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
